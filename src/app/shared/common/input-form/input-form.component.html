@@ -1,0 +1,17 @@
+<div class="m-3">
+  <input
+    class="form-control"
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [required]="required"
+    [readonly]="readonly"
+    [maxlength]="maxlength"
+    [minlength]="minlength"
+    [formControl]="formControl"
+    [formControlName]="formControlName"
+  <label *ngIf="formGroup.get(formControlName).invalid && formGroup.get(formControlName).touched" class="text-danger">
+    {{ label }} is required
+  </label>
+</div>
