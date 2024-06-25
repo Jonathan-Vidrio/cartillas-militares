@@ -1,1 +1,120 @@
-<p>create-card works!</p>
+<body>
+<section class="container">
+  <div class="mt-4">
+    <!-- header -->
+    <div>
+      <h3>Elaborar Cartilla Militar</h3>
+    </div>
+
+    <!-- form -->
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <div class="mt-5">
+        <!-- card data -->
+        <div class="mb-4">
+          <!-- font bold -->
+          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de la Cartilla</h5>
+
+          <div class="m-3">
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="registrationSeries" formControlName="registrationSeries"
+                     placeholder="Serie Matrícula">
+              <label for="registrationSeries">Serie Matrícula</label>
+            </div>
+
+            <div class="row form-floating">
+              <input type="text" class="form-control" id="registrationNumber" formControlName="registrationNumber" placeholder="Número de Matrícula">
+              <label for="registrationNumber">Número de Matrícula</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mb-5 mx-2">
+
+        <!-- personal data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Básicos</h5>
+          <div class="m-3">
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre">
+              <label for="name">Nombre</label>
+            </div>
+
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="paternalSurname" formControlName="paternalSurname" placeholder="Apellido Paterno">
+              <label for="paternalSurname">Apellido Paterno</label>
+            </div>
+
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="maternalSurname" formControlName="maternalSurname" placeholder="Apellido Materno">
+              <label for="maternalSurname">Apellido Materno</label>
+            </div>
+
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="curp" formControlName="curp" placeholder="CURP">
+              <label for="curp">CURP</label>
+            </div>
+
+            <div class="row form-floating mb-3">
+              <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="Fecha de Nacimiento">
+              <label for="birthdate">Fecha de Nacimiento</label>
+            </div>
+
+            <div class="row form-floating">
+              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono">
+              <label for="phone">Teléfono</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mb-5 mx-2">
+
+        <!-- address data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2" style="font-weight: bold">Domicilio</h5>
+          <div class="m-3">
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="nationality" formControlName="nationality" placeholder="Nacionalidad">
+              <label for="nationality">Nacionalidad</label>
+            </div>
+
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="state" formControlName="state" placeholder="Estado">
+              <label for="state">Estado</label>
+            </div>
+
+            <div class="row form-floating mb-3">
+              <input type="text" class="form-control" id="municipality" formControlName="municipality" placeholder="Municipio">
+              <label for="municipality">Municipio</label>
+            </div>
+
+            <div class="row form-floating">
+              <input type="text" class="form-control" id="address" formControlName="address" placeholder="Dirección">
+              <label for="address">Dirección</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mb-5 mx-2">
+
+        <!-- additional data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Adicionales</h5>
+          <div class="m-3">
+            <div class="row form-floating mb-3">
+              <select class="form-control" id="occupation" formControlName="occupation">
+                <option value="" disabled selected>Selecciona una ocupación</option>
+                <option *ngFor="let occupation of occupations" [value]="occupation.id">{{ occupation.name }}</option>
+              </select>
+              <label for="occupation">Ocupación</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+</body>
+

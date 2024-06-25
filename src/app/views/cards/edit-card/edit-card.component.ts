@@ -5,8 +5,5 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './edit-card.component.html',
-  styleUrl: './edit-card.component.scss'
 })
-export class EditCardComponent {
-
-}
+export class EditCardComponent {}

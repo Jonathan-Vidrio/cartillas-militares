@@ -17,11 +17,11 @@ export const CARDS_ROUTES: Routes = [
         component: CreateCardComponent,
       },
       {
-        path: ':id/edit',
+        path: 'edit/:id',
         component: EditCardComponent,
       },
       {
-        path: ':id/details',
+        path: 'details/:id',
         component: DetailsCardComponent,
       },
     ],
