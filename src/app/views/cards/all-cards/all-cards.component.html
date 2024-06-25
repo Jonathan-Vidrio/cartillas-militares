@@ -7,24 +7,15 @@
       </div>
 
       <!-- search bar -->
-      <div
-        class="d-flex justify-content-center mt-4"
-        style="max-width: 50%; margin: 0 auto">
+      <div class="d-flex justify-content-center mt-4" style="max-width: 50%; margin: 0 auto">
         <div class="d-flex flex-row justify-content-around w-100">
           <select class="form-select w-auto" [(ngModel)]="selectedFilter">
             <option value="matricula">Matrícula</option>
             <option value="nombre">Nombre</option>
             <option value="domicilio">Domicilio</option>
           </select>
-          <input
-            class="form-control mx-2"
-            placeholder="Buscar..."
-            [(ngModel)]="searchValue"
-            (keyup)="searchCard()" />
-          <button
-            type="button"
-            class="btn btn-primary h-auto"
-            (click)="searchCard()">
+          <input class="form-control mx-2" placeholder="Buscar..." [(ngModel)]="searchValue" (keyup)="searchCard()" />
+          <button type="button" class="btn btn-primary h-auto" (click)="searchCard()">
             <i class="bi bi-search"></i>
           </button>
         </div>
@@ -44,14 +35,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="let card of cards | paginate: { itemsPerPage: 15, currentPage, id: 'pagination' }">
+            <tr *ngFor="let card of cards | paginate: { itemsPerPage: 15, currentPage, id: 'pagination' }">
               <!-- link to card -->
               <td>{{ card.serie }}</td>
               <td>
-                <a [routerLink]="['/cards/details', card.matricula]">{{
-                  card.matricula
-                }}</a>
+                <a [routerLink]="['/cards/details', card.matricula]">{{ card.matricula }}</a>
               </td>
               <td>{{ card.apellidoPaterno }}</td>
               <td>{{ card.apellidoMaterno }}</td>

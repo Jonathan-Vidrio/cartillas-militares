@@ -15,9 +15,9 @@ export const cardForm: FormGroup = new FormGroup({
   nationality: new FormControl('', [Validators.required]),
   state: new FormControl('', [Validators.required]),
   municipality: new FormControl('', [Validators.required]),
-  civilStatus: new FormControl('', [Validators.required]),
+  maritalStatus: new FormControl('', [Validators.required]),
   occupation: new FormControl('', [Validators.required]),
-  literacy: new FormControl('', [Validators.required]),
+  literacy: new FormControl(false, [Validators.required]),
   educationLevel: new FormControl('', [Validators.required]),
   address: new FormControl('', [Validators.required]),
   phone: new FormControl('', [Validators.required]),
@@ -35,10 +35,10 @@ export const cardForm: FormGroup = new FormGroup({
   motherAlive: new FormControl('', [Validators.required]),
 
   // grandparents data
-  livingGrandParents: new FormControl('', [Validators.required]),
+  livingGrandParents: new FormControl(0, [Validators.required]),
 
   // spouse data
-  spouseAlive: new FormControl('', [Validators.required]),
+  spouseAlive: new FormControl(true, [Validators.required]),
 
   // children data
   numberChildren: new FormControl('', [Validators.required]),

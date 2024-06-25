@@ -1,17 +1,16 @@
-<div class="m-3">
+<div class="mb-3">
+  <label [for]="id" class="form-label custom-label">{{ label }}</label>
   <input
-    class="form-control"
     [type]="type"
+    class="form-control custom-input"
+    [id]="id"
     [placeholder]="placeholder"
     [value]="value"
-    [disabled]="disabled"
-    [required]="required"
-    [readonly]="readonly"
-    [maxlength]="maxlength"
-    [minlength]="minlength"
-    [formControl]="formControl"
-    [formControlName]="formControlName"
-  <label *ngIf="formGroup.get(formControlName).invalid && formGroup.get(formControlName).touched" class="text-danger">
-    {{ label }} is required
-  </label>
+    (input)="onInput($event)"
+    (focus)="registerOnTouched()"
+    (blur)="onBlur()"
+    [required]="showError()">
+  <div *ngIf="showError()" class="text-danger custom-label mt-1">
+    {{ determineError() }}
+  </div>
 </div>

@@ -1,120 +1,215 @@
 <body>
-<section class="container">
-  <div class="mt-4">
-    <!-- header -->
-    <div>
-      <h3>Elaborar Cartilla Militar</h3>
-    </div>
-
-    <!-- form -->
-    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
-      <div class="mt-5">
-        <!-- card data -->
-        <div class="mb-4">
-          <!-- font bold -->
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de la Cartilla</h5>
-
-          <div class="m-3">
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="registrationSeries" formControlName="registrationSeries"
-                     placeholder="Serie Matrícula">
-              <label for="registrationSeries">Serie Matrícula</label>
-            </div>
-
-            <div class="row form-floating">
-              <input type="text" class="form-control" id="registrationNumber" formControlName="registrationNumber" placeholder="Número de Matrícula">
-              <label for="registrationNumber">Número de Matrícula</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- separator -->
-        <hr class="mb-5 mx-2">
-
-        <!-- personal data -->
-        <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Básicos</h5>
-          <div class="m-3">
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre">
-              <label for="name">Nombre</label>
-            </div>
-
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="paternalSurname" formControlName="paternalSurname" placeholder="Apellido Paterno">
-              <label for="paternalSurname">Apellido Paterno</label>
-            </div>
-
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="maternalSurname" formControlName="maternalSurname" placeholder="Apellido Materno">
-              <label for="maternalSurname">Apellido Materno</label>
-            </div>
-
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="curp" formControlName="curp" placeholder="CURP">
-              <label for="curp">CURP</label>
-            </div>
-
-            <div class="row form-floating mb-3">
-              <input type="date" class="form-control" id="birthdate" formControlName="birthdate" placeholder="Fecha de Nacimiento">
-              <label for="birthdate">Fecha de Nacimiento</label>
-            </div>
-
-            <div class="row form-floating">
-              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Teléfono">
-              <label for="phone">Teléfono</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- separator -->
-        <hr class="mb-5 mx-2">
-
-        <!-- address data -->
-        <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Domicilio</h5>
-          <div class="m-3">
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="nationality" formControlName="nationality" placeholder="Nacionalidad">
-              <label for="nationality">Nacionalidad</label>
-            </div>
-
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="state" formControlName="state" placeholder="Estado">
-              <label for="state">Estado</label>
-            </div>
-
-            <div class="row form-floating mb-3">
-              <input type="text" class="form-control" id="municipality" formControlName="municipality" placeholder="Municipio">
-              <label for="municipality">Municipio</label>
-            </div>
-
-            <div class="row form-floating">
-              <input type="text" class="form-control" id="address" formControlName="address" placeholder="Dirección">
-              <label for="address">Dirección</label>
-            </div>
-          </div>
-        </div>
-
-        <!-- separator -->
-        <hr class="mb-5 mx-2">
-
-        <!-- additional data -->
-        <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Adicionales</h5>
-          <div class="m-3">
-            <div class="row form-floating mb-3">
-              <select class="form-control" id="occupation" formControlName="occupation">
-                <option value="" disabled selected>Selecciona una ocupación</option>
-                <option *ngFor="let occupation of occupations" [value]="occupation.id">{{ occupation.name }}</option>
-              </select>
-              <label for="occupation">Ocupación</label>
-            </div>
-          </div>
-        </div>
+  <section class="container">
+    <div class="mt-4">
+      <!-- header -->
+      <div>
+        <h3>Elaborar Cartilla Militar</h3>
       </div>
-    </form>
-  </div>
-</section>
-</body>
 
+      <!-- form -->
+      <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" class="container">
+        <div class="mt-5">
+          <!-- card data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de la Cartilla</h5>
+
+            <div class="m-1">
+              <app-input-form id="registrationSeries" label="Serie Matrícula" formControlName="registrationSeries"></app-input-form>
+              <app-input-form id="registrationNumber" label="Número de Matrícula" formControlName="registrationNumber"></app-input-form>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- personal data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Básicos</h5>
+
+            <div class="m-1">
+              <app-input-form id="name" label="Nombre" formControlName="name"></app-input-form>
+              <app-input-form id="paternalSurname" label="Apellido Paterno" formControlName="paternalSurname"></app-input-form>
+              <app-input-form id="maternalSurname" label="Apellido Materno" formControlName="maternalSurname"></app-input-form>
+              <app-input-form id="curp" label="CURP" formControlName="curp"></app-input-form>
+              <app-input-form id="birthdate" label="Fecha de Nacimiento" formControlName="birthdate"></app-input-form>
+              <app-input-form id="phone" label="Teléfono" formControlName="phone"></app-input-form>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- address data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Domicilio</h5>
+
+            <div class="m-1">
+              <app-input-form id="nationality" label="Nacionalidad" formControlName="nationality"></app-input-form>
+              <app-input-form id="state" label="Estado" formControlName="state"></app-input-form>
+              <app-input-form id="municipality" label="Municipio" formControlName="municipality"></app-input-form>
+              <app-input-form id="address" label="Dirección" formControlName="address"></app-input-form>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- additional data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Adicionales</h5>
+
+            <div class="m-3">
+              <div class="row form-floating mb-3">
+                <select class="form-control" id="maritalStatus" formControlName="maritalStatus">
+                  <option value="" disabled selected>Selecciona un estado civil</option>
+                  <option *ngFor="let maritalStatus of maritalStatuses" [value]="maritalStatus.id">{{ maritalStatus.name }}</option>
+                </select>
+                <label for="maritalStatus">Estado Civil</label>
+              </div>
+
+              <div class="row form-floating mb-3">
+                <select class="form-control" id="occupation" formControlName="occupation">
+                  <option value="" disabled selected>Selecciona una ocupación</option>
+                  <option *ngFor="let occupation of occupations" [value]="occupation.id">{{ occupation.name }}</option>
+                </select>
+                <label for="occupation">Ocupación</label>
+              </div>
+
+              <div class="row form-floating mb-3">
+                <select class="form-control" id="educationLevel" formControlName="educationLevel">
+                  <option value="" disabled selected>Selecciona un nivel de educación</option>
+                  <option *ngFor="let educationLevel of educationLevels" [value]="educationLevel.id">{{ educationLevel.name }}</option>
+                </select>
+                <label for="educationLevel">Nivel de Educación</label>
+              </div>
+
+              <div class="form-group">
+                <label class="mb-2">¿Sabe leer y escribir?</label>
+                <div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="literacyYes" name="literacy" value="true" formControlName="literacy" />
+                    <label class="form-check-label" for="literacyYes">Sí</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="literacyNo" name="literacy" value="false" formControlName="literacy" />
+                    <label class="form-check-label" for="literacyNo">No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- father data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos del Padre</h5>
+
+            <div class="m-1">
+              <app-input-form id="fatherName" label="Nombre" formControlName="fatherName"></app-input-form>
+              <app-input-form id="fatherPaternalSurname" label="Apellido Paterno" formControlName="fatherPaternalSurname"></app-input-form>
+              <app-input-form id="fatherMaternalSurname" label="Apellido Materno" formControlName="fatherMaternalSurname"></app-input-form>
+
+              <div class="form-group">
+                <label class="mb-2">¿Vive?</label>
+                <div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="fatherAliveYes" name="fatherAlive" value="true" formControlName="fatherAlive" />
+                    <label class="form-check-label" for="fatherAliveYes">Sí</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="fatherAliveNo" name="fatherAlive" value="false" formControlName="fatherAlive" />
+                    <label class="form-check-label" for="fatherAliveNo">No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- mother data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de la Madre</h5>
+
+            <div class="m-1">
+              <app-input-form id="motherName" label="Nombre" formControlName="motherName"></app-input-form>
+              <app-input-form id="motherPaternalSurname" label="Apellido Paterno" formControlName="motherPaternalSurname"></app-input-form>
+              <app-input-form id="motherMaternalSurname" label="Apellido Materno" formControlName="motherMaternalSurname"></app-input-form>
+
+              <div class="form-group">
+                <label class="mb-2">¿Vive?</label>
+                <div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="motherAliveYes" name="motherAlive" value="true" formControlName="motherAlive" />
+                    <label class="form-check-label" for="motherAliveYes">Sí</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="motherAliveNo" name="motherAlive" value="false" formControlName="motherAlive" />
+                    <label class="form-check-label" for="motherAliveNo">No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- grandparents data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de Abuelos</h5>
+
+            <div class="m-1">
+              <app-input-form type="number" id="livingGrandParents" label="Abuelos que aún viven" formControlName="livingGrandParents"></app-input-form>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- spouse data -->
+          <div class="mb-4">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos del Cónyuge</h5>
+
+            <div class="form-group m-1">
+              <label class="mb-2">¿Vive?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="spouseAliveYes" name="spouseAlive" value="true" formControlName="spouseAlive" />
+                  <label class="form-check-label" for="spouseAliveYes">Sí</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="spouseAliveNo" name="spouseAlive" value="false" formControlName="spouseAlive" />
+                  <label class="form-check-label" for="spouseAliveNo">No</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- children data -->
+          <div class="mb-4" style="width: 70%">
+            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de Hijos</h5>
+
+            <div class="m-1">
+              <app-input-form type="number" id="numberChildren" label="Número de Hijos" formControlName="numberChildren"></app-input-form>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mb-5 mx-2" />
+
+          <!-- submit button -->
+          <div class="d-grid gap-2 col-3 mx-auto mb-5">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>

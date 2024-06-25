@@ -1,36 +1,65 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-input-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, NgIf],
+  imports: [NgClass, NgIf],
   templateUrl: './input-form.component.html',
-  styleUrl: './input-form.component.scss',
+  styleUrls: ['./input-form.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputFormComponent),
+      multi: true,
+    },
+  ],
 })
-export class InputFormComponent {
+export class InputFormComponent implements ControlValueAccessor {
+  @Input() id: string;
   @Input() label: string;
   @Input() type: string;
   @Input() placeholder: string;
-  @Input() value: string;
-  @Input() disabled: boolean;
-  @Input() required: boolean;
-  @Input() readonly: boolean;
-  @Input() maxlength: number;
-  @Input() minlength: number;
-  @Input() formControl: FormControl;
+
+  protected value: string;
+  protected disabled = false;
+
+  private touched = false;
 
   constructor() {
+    this.id = '';
+    this.type = '';
     this.label = '';
     this.placeholder = '';
-    this.type = 'text';
     this.value = '';
-    this.disabled = false;
-    this.required = false;
-    this.readonly = false;
-    this.maxlength = 255;
-    this.minlength = 0;
-    this.formControl = new FormControl();
   }
+
+  determineError(): string {
+    if (this.value.trim() === '' && this.touched) {
+      return 'Este campo es obligatorio';
+    }
+    return '';
+  }
+
+  showError(): boolean {
+    return this.touched && this.value.trim() === '';
+  }
+
+  registerOnTouched(): void {
+    this.touched = false;
+  }
+
+  onBlur(): void {
+    this.touched = true;
+  }
+
+  onInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+  }
+
+  writeValue(): void {}
+
+  registerOnChange(): void {}
 }

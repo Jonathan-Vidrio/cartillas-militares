@@ -12,7 +12,7 @@ export interface Card {
   nationality: string;
   state: string;
   municipality: string;
-  civilStatus: string;
+  maritalStatus: string;
   occupation: string;
   literacy: boolean;
   educationLevel: string;
