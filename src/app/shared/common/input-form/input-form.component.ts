@@ -23,9 +23,7 @@ export class InputFormComponent implements ControlValueAccessor {
   @Input() placeholder: string;
 
   protected value: string;
-  protected disabled = false;
-
-  private touched = false;
+  private touched: boolean;
 
   constructor() {
     this.id = '';
@@ -33,17 +31,31 @@ export class InputFormComponent implements ControlValueAccessor {
     this.label = '';
     this.placeholder = '';
     this.value = '';
+    this.touched = false;
   }
 
   determineError(): string {
-    if (this.value.trim() === '' && this.touched) {
-      return 'Este campo es obligatorio';
+    if (this.type === '' || this.type === 'text') {
+      return this.touched && this.value.trim() === '' ? 'Campo requerido' : '';
     }
+
+    if (this.type === 'number') {
+      return this.touched && (isNaN(Number(this.value)) || Number(this.value) < 0) ? 'Número inválido' : '';
+    }
+
     return '';
   }
 
   showError(): boolean {
-    return this.touched && this.value.trim() === '';
+    if (this.type === '' || this.type === 'text') {
+      return this.touched && this.value.trim() === '';
+    }
+
+    if (this.type === 'number') {
+      return this.touched && (isNaN(Number(this.value)) || Number(this.value) < 0);
+    }
+
+    return false;
   }
 
   registerOnTouched(): void {
@@ -56,10 +68,12 @@ export class InputFormComponent implements ControlValueAccessor {
 
   onInput(event: Event): void {
     const input = event.target as HTMLInputElement;
-    this.value = input.value;
+    this.writeValue(input.value);
   }
 
-  writeValue(): void {}
+  writeValue(value: string): void {
+    this.value = value;
+  }
 
   registerOnChange(): void {}
 }

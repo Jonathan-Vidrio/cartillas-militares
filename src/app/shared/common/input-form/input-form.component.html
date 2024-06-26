@@ -1,5 +1,7 @@
 <div class="mb-3">
-  <label [for]="id" class="form-label custom-label">{{ label }}</label>
+  <div style="min-height: 32px">
+    <label [for]="id" class="form-label custom-label">{{ label }}</label>
+  </div>
   <input
     [type]="type"
     class="form-control custom-input"
@@ -9,7 +11,7 @@
     (input)="onInput($event)"
     (focus)="registerOnTouched()"
     (blur)="onBlur()"
-    [required]="showError()">
+    [required]="showError()" />
   <div *ngIf="showError()" class="text-danger custom-label mt-1">
     {{ determineError() }}
   </div>

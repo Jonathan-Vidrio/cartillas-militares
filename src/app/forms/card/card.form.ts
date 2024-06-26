@@ -32,16 +32,16 @@ export const cardForm: FormGroup = new FormGroup({
   motherName: new FormControl('', [Validators.required]),
   motherPaternalSurname: new FormControl('', [Validators.required]),
   motherMaternalSurname: new FormControl('', [Validators.required]),
-  motherAlive: new FormControl('', [Validators.required]),
+  motherAlive: new FormControl(false, [Validators.required]),
 
   // grandparents data
   livingGrandParents: new FormControl(0, [Validators.required]),
 
   // spouse data
-  spouseAlive: new FormControl(true, [Validators.required]),
+  spouseAlive: new FormControl(false, [Validators.required]),
 
   // children data
-  numberChildren: new FormControl('', [Validators.required]),
+  numberChildren: new FormControl(0, [Validators.required]),
 } as {
   [K in keyof Card]: FormControl;
 });
