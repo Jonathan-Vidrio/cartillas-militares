@@ -2,11 +2,12 @@ export interface Card {
   // card data
   registrationSeries: string;
   registrationNumber: number;
+  class: number;
 
   // personal data
-  name: string;
   paternalSurname: string;
   maternalSurname: string;
+  name: string;
   curp: string;
   birthdate: Date;
   nationality: string;

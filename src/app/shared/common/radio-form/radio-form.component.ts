@@ -7,7 +7,6 @@ import { NgForOf, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgForOf, NgIf, ReactiveFormsModule],
   templateUrl: './radio-form.component.html',
-  styleUrl: './radio-form.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

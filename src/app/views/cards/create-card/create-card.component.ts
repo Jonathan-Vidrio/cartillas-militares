@@ -27,4 +27,8 @@ export class CreateCardComponent implements OnInit {
   onSubmit(): void {
     console.log(this.cardForm.value);
   }
+
+  onCancel(): void {
+    console.log('Cancel');
+  }
 }

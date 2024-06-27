@@ -1,0 +1,39 @@
+body {
+  padding-top: 30px;
+}
+
+td {
+  align-content: center;
+  height: 50px;
+}
+
+.text-red {
+  color: #BA0000;
+}
+
+.custom-label {
+  color: #717171FF;
+  margin-left: 0.5vh;
+}
+
+.custom-button {
+  border: none;
+  width: auto;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: #BA0000;
+  color: #ffffff;
+}
+
+.secondary {
+  background-color: #717171FF;
+  color: #ffffff;
+}

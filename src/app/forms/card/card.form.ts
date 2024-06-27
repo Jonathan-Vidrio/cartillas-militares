@@ -4,12 +4,13 @@ import { Card } from '../../core/models/card.interface';
 export const cardForm: FormGroup = new FormGroup({
   // card data
   registrationSeries: new FormControl('', [Validators.required]),
-  registrationNumber: new FormControl('', [Validators.required]),
+  registrationNumber: new FormControl(0, [Validators.required]),
+  class: new FormControl(0, [Validators.required]),
 
   // personal data
-  name: new FormControl('', [Validators.required]),
   paternalSurname: new FormControl('', [Validators.required]),
   maternalSurname: new FormControl('', [Validators.required]),
+  name: new FormControl('', [Validators.required]),
   curp: new FormControl('', [Validators.required]),
   birthdate: new FormControl('', [Validators.required]),
   nationality: new FormControl('', [Validators.required]),

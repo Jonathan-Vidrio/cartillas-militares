@@ -18,7 +18,10 @@
                 <app-input-form id="registrationSeries" label="Serie Matrícula" formControlName="registrationSeries"></app-input-form>
               </div>
               <div class="col-md-4">
-                <app-input-form id="registrationNumber" label="Número de Matrícula" formControlName="registrationNumber"></app-input-form>
+                <app-input-form id="registrationNumber" type="number" label="Número de Matrícula" formControlName="registrationNumber"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="class" type="number" label="Clase" formControlName="class"></app-input-form>
               </div>
             </div>
           </div>
@@ -200,8 +203,14 @@
         <hr class="mb-5 mx-2" />
 
         <!-- submit button -->
-        <div class="d-grid gap-2 col-3 mx-auto mb-5">
-          <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="row mb-5">
+          <div class="col-md-4"></div>
+          <div class="col-md-2 d-flex">
+            <button class="custom-button secondary w-100" type="button" (click)="onCancel()">Cancelar</button>
+          </div>
+          <div class="col-md-2 d-flex">
+            <button class="custom-button primary w-100" type="submit"><i class="bi bi-save-fill"></i> Guardar</button>
+          </div>
         </div>
       </form>
     </div>

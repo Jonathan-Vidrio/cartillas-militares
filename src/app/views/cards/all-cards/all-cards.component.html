@@ -15,7 +15,7 @@
             <option value="domicilio">Domicilio</option>
           </select>
           <input class="form-control mx-2" placeholder="Buscar..." [(ngModel)]="searchValue" (keyup)="searchCard()" />
-          <button type="button" class="btn btn-primary h-auto" (click)="searchCard()">
+          <button type="button" class="custom-button primary" (click)="searchCard()">
             <i class="bi bi-search"></i>
           </button>
         </div>
@@ -39,7 +39,7 @@
               <!-- link to card -->
               <td>{{ card.serie }}</td>
               <td>
-                <a [routerLink]="['/cards/details', card.matricula]">{{ card.matricula }}</a>
+                <a class="text-red" [routerLink]="['/cards/details', card.matricula]">{{ card.matricula }}</a>
               </td>
               <td>{{ card.apellidoPaterno }}</td>
               <td>{{ card.apellidoMaterno }}</td>
