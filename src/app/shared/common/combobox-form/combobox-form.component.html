@@ -2,8 +2,8 @@
   <div style="min-height: 32px">
     <label [for]="id" class="form-label custom-label">{{ label }}</label>
   </div>
-  <select class="form-select custom-input" [id]="id" [value]="value" (focus)="registerOnTouched()" (blur)="onBlur()" (change)="onSelect($event)" [required]="determineError()">
-    <option value="" disabled selected>{{ placeholder }}</option>
+  <select class="form-select custom-input" [id]="id" [value]="value" (focus)="onFocus()" (blur)="onBlur()" (change)="onSelect($event)" [required]="determineError()">
+    <option *ngIf="placeholder" value="" disabled selected>{{ placeholder }}</option>
     <option *ngFor="let option of options" [value]="option">{{ option }}</option>
   </select>
   <div *ngIf="showError()" class="text-danger custom-label mt-1">

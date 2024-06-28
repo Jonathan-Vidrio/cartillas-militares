@@ -13,7 +13,6 @@ export const cardForm: FormGroup = new FormGroup({
   name: new FormControl('', [Validators.required]),
   curp: new FormControl('', [Validators.required]),
   birthdate: new FormControl('', [Validators.required]),
-  nationality: new FormControl('', [Validators.required]),
   state: new FormControl('', [Validators.required]),
   municipality: new FormControl('', [Validators.required]),
   maritalStatus: new FormControl('', [Validators.required]),
@@ -27,7 +26,7 @@ export const cardForm: FormGroup = new FormGroup({
   fatherName: new FormControl('', [Validators.required]),
   fatherPaternalSurname: new FormControl('', [Validators.required]),
   fatherMaternalSurname: new FormControl('', [Validators.required]),
-  fatherAlive: new FormControl('', [Validators.required]),
+  fatherAlive: new FormControl(false, [Validators.required]),
 
   // mother data
   motherName: new FormControl('', [Validators.required]),

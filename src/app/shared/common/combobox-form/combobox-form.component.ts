@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
 
@@ -16,7 +16,7 @@ import { NgForOf, NgIf } from '@angular/common';
     },
   ],
 })
-export class ComboboxFormComponent implements ControlValueAccessor {
+export class ComboboxFormComponent implements ControlValueAccessor, OnInit {
   @Input() id: string;
   @Input() label: string;
   @Input() options: string[];
@@ -24,6 +24,9 @@ export class ComboboxFormComponent implements ControlValueAccessor {
 
   protected value: string;
   private touched: boolean;
+
+  private onChange!: (value: any) => void;
+  private onTouched!: () => void;
 
   constructor() {
     this.id = '';
@@ -34,8 +37,14 @@ export class ComboboxFormComponent implements ControlValueAccessor {
     this.touched = false;
   }
 
+  ngOnInit(): void {
+    if (!this.placeholder) {
+      this.value = this.options[0];
+    }
+  }
+
   determineError(): string {
-    if (this.value.trim() === '' && this.touched) {
+    if (this.value === '' && this.touched) {
       return 'Este campo es obligatorio';
     }
 
@@ -43,10 +52,14 @@ export class ComboboxFormComponent implements ControlValueAccessor {
   }
 
   showError(): boolean {
-    return this.touched && this.value.trim() === '';
+    return this.touched && this.value === '' && this.options !== undefined;
   }
 
-  registerOnTouched(): void {
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  onFocus(): void {
     this.touched = false;
   }
 
@@ -57,11 +70,16 @@ export class ComboboxFormComponent implements ControlValueAccessor {
   onSelect(event: Event): void {
     const select = event.target as HTMLSelectElement;
     this.writeValue(select.value);
+    if (typeof this.onChange === 'function') {
+      this.onChange(select.value);
+    }
   }
 
   writeValue(value: string): void {
     this.value = value;
   }
 
-  registerOnChange(): void {}
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
+  }
 }

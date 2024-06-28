@@ -11,7 +11,7 @@
         <div class="mt-5">
           <!-- card data -->
           <div class="mb-4">
-            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de la Cartilla</h5>
+            <h5 class="mb-3 mx-2 text-bold">Datos de la Cartilla</h5>
 
             <div class="m-1 row">
               <div class="col-md-4">
@@ -31,7 +31,7 @@
 
           <!-- personal data -->
           <div class="mb-4">
-            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Básicos</h5>
+            <h5 class="mb-3 mx-2 text-bold">Datos Básicos</h5>
 
             <div class="m-1 row">
               <div class="col-md-4">
@@ -59,20 +59,15 @@
 
           <!-- address data -->
           <div class="mb-4">
-            <h5 class="mb-3 mx-2" style="font-weight: bold">Domicilio</h5>
+            <h5 class="mb-3 mx-2 text-bold">Domicilio</h5>
 
             <div class="m-1 row">
               <div class="col-md-4">
-                <app-input-form id="nationality" label="Nacionalidad" formControlName="nationality"></app-input-form>
+                <app-combobox-form id="state" label="Estado" [options]="states" placeholder="Selecciona una opción" formControlName="state"></app-combobox-form>
               </div>
               <div class="col-md-4">
-                <app-input-form id="state" label="Estado" formControlName="state"></app-input-form>
+                <app-combobox-form id="municipality" label="Municipio" [options]="municipalities" placeholder="Selecciona una opción" formControlName="municipality"></app-combobox-form>
               </div>
-              <div class="col-md-4">
-                <app-input-form id="municipality" label="Municipio" formControlName="municipality"></app-input-form>
-              </div>
-            </div>
-            <div class="m-1 row">
               <div class="col-md-4">
                 <app-input-form id="address" label="Dirección" formControlName="address"></app-input-form>
               </div>
@@ -84,16 +79,16 @@
 
           <!-- additional data -->
           <div class="mb-4">
-            <h5 class="mb-3 mx-2" style="font-weight: bold">Datos Adicionales</h5>
+            <h5 class="mb-3 mx-2 text-bold">Datos Adicionales</h5>
 
             <div class="m-1 row">
               <div class="col-md-4">
-                <app-combobox-form id="maritalStatus" label="Estado Civil" [options]="maritalStatusOptions" formControlName="maritalStatus" placeholder="Selecciona una opción"></app-combobox-form>
+                <app-combobox-form id="maritalStatus" label="Estado Civil" [options]="maritalStatusOptions" placeholder="Selecciona una opción" formControlName="maritalStatus"></app-combobox-form>
               </div>
               <div class="col-md-4">
                 <div class="row">
                   <div class="col" style="min-width: 110px; max-width: 110px">
-                    <app-combobox-form id="lada" label="Teléfono" [options]="ladaOptions"></app-combobox-form>
+                    <app-combobox-form id="lada" label="Teléfono" [options]="countryCode"></app-combobox-form>
                   </div>
                   <div class="col">
                     <app-input-form id="phone" label="" formControlName="phone"></app-input-form>
@@ -101,7 +96,7 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <app-radio-form [ids]="['literacyYes', 'literacyNo']" label="¿Sabe leer y escribir?" name="literacy" formControlName="literacy"></app-radio-form>
+                <app-radio-form label="¿Sabe leer y escribir?" name="literacy" [options]="[true, false]" formControlName="literacy"></app-radio-form>
               </div>
             </div>
           </div>
@@ -112,7 +107,7 @@
 
         <!-- father data -->
         <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos del Padre</h5>
+          <h5 class="mb-3 mx-2 text-bold">Datos del Padre</h5>
 
           <div class="m-1 row">
             <div class="col-md-4">
@@ -127,7 +122,7 @@
           </div>
           <div class="m-1 row">
             <div class="col-md-4">
-              <app-radio-form [ids]="['fatherAliveYes', 'fatherAliveNo']" label="¿Vive?" name="fatherAlive" formControlName="fatherAlive"></app-radio-form>
+              <app-radio-form label="¿Vive?" name="fatherAlive" [options]="[true, false]" formControlName="fatherAlive"></app-radio-form>
             </div>
           </div>
         </div>
@@ -137,7 +132,7 @@
 
         <!-- mother data -->
         <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de la Madre</h5>
+          <h5 class="mb-3 mx-2 text-bold">Datos de la Madre</h5>
 
           <div class="m-1 row">
             <div class="col-md-4">
@@ -152,7 +147,7 @@
           </div>
           <div class="m-1 row">
             <div class="col-md-4">
-              <app-radio-form [ids]="['motherAliveYes', 'motherAliveNo']" label="¿Vive?" name="motherAlive" formControlName="motherAlive"></app-radio-form>
+              <app-radio-form label="¿Vive?" name="motherAlive" [options]="[true, false]" formControlName="motherAlive"></app-radio-form>
             </div>
           </div>
         </div>
@@ -162,7 +157,7 @@
 
         <!-- grandparents data -->
         <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de Abuelos</h5>
+          <h5 class="mb-3 mx-2 text-bold">Datos de Abuelos</h5>
 
           <div class="m-1 row">
             <div class="col-md-4">
@@ -176,11 +171,11 @@
 
         <!-- spouse data -->
         <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos del Cónyuge</h5>
+          <h5 class="mb-3 mx-2 text-bold">Datos del Cónyuge</h5>
 
           <div class="m-1 row">
             <div class="col-md-4">
-              <app-radio-form [ids]="['spouseAliveYes', 'spouseAliveNo']" label="¿Vive?" name="spouseAlive" formControlName="spouseAlive"></app-radio-form>
+              <app-radio-form label="¿Vive?" name="spouseAlive" [options]="[true, false]" formControlName="spouseAlive"></app-radio-form>
             </div>
           </div>
         </div>
@@ -190,7 +185,7 @@
 
         <!-- children data -->
         <div class="mb-4">
-          <h5 class="mb-3 mx-2" style="font-weight: bold">Datos de Hijos</h5>
+          <h5 class="mb-3 mx-2 text-bold">Datos de Hijos</h5>
 
           <div class="m-1 row">
             <div class="col-md-4">

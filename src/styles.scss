@@ -7,6 +7,10 @@ td {
   height: 50px;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
 .text-red {
   color: #BA0000;
 }
@@ -26,6 +30,7 @@ td {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  margin-bottom: 2vh;
 }
 
 .primary {

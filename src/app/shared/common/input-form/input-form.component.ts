@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgClass, NgIf } from '@angular/common';
 
@@ -25,12 +25,15 @@ export class InputFormComponent implements ControlValueAccessor {
   protected value: string;
   private touched: boolean;
 
+  private onChange!: (value: any) => void;
+  private onTouched!: () => void;
+
   constructor() {
     this.id = '';
     this.type = '';
     this.label = '';
     this.placeholder = '';
-    this.value = '';
+    this.value = this.type === 'number' ? '0' : '';
     this.touched = false;
   }
 
@@ -58,7 +61,11 @@ export class InputFormComponent implements ControlValueAccessor {
     return false;
   }
 
-  registerOnTouched(): void {
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  onFocus(): void {
     this.touched = false;
   }
 
@@ -69,11 +76,14 @@ export class InputFormComponent implements ControlValueAccessor {
   onInput(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.writeValue(input.value);
+    this.onChange(input.value);
   }
 
   writeValue(value: string): void {
     this.value = value;
   }
 
-  registerOnChange(): void {}
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
+  }
 }

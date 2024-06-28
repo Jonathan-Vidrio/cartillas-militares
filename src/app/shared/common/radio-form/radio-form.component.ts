@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
 
@@ -15,20 +15,33 @@ import { NgForOf, NgIf } from '@angular/common';
     },
   ],
 })
-export class RadioFormComponent implements ControlValueAccessor {
-  @Input() ids: string[];
+export class RadioFormComponent implements ControlValueAccessor, OnInit {
   @Input() label: string;
   @Input() name: string;
+  @Input() options: any[];
 
   protected value: boolean;
-  private touched: boolean;
+  protected optionsMap: { [key: string]: any };
+  private readonly touched: boolean;
+
+  private onChange!: (value: any) => void;
+  private onTouched!: () => void;
 
   constructor() {
-    this.ids = [];
     this.label = '';
     this.name = '';
-    this.value = false;
+    this.options = [];
+    this.value = this.options[0];
+    this.optionsMap = {};
     this.touched = false;
+  }
+
+  ngOnInit() {
+    this.determineError();
+    this.optionsMap = this.options.reduce((map, option) => {
+      map[this.optionToString(option)] = option;
+      return map;
+    }, {});
   }
 
   determineError(): string {
@@ -43,15 +56,30 @@ export class RadioFormComponent implements ControlValueAccessor {
     return !this.touched;
   }
 
-  onSelect(value: boolean): void {
-    this.writeValue(value);
+  optionToString(option: any): string {
+    if (typeof option === 'boolean') return option ? 'Sí' : 'No';
+    return option;
+  }
+
+  optionsToString(options: any[]): any[] {
+    return options.map(option => this.optionToString(option));
+  }
+
+  onSelect(value: any): void {
+    const originalValue = this.optionsMap[value];
+    this.writeValue(originalValue);
+    this.onChange(originalValue); // Notificar el cambio al formulario
   }
 
   writeValue(value: boolean): void {
     this.value = value;
   }
 
-  registerOnChange(): void {}
-  registerOnTouched(): void {}
-  onBlur(): void {}
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
 }
