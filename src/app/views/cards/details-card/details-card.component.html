@@ -1,0 +1,139 @@
+<body>
+  <section class="container">
+    <div class="mt-4">
+      <!-- header -->
+      <div class="row align-content-between">
+        <div class="col-md-6">
+          <h3>Detalles de Cartilla Militar</h3>
+        </div>
+
+        <!-- show only if user is admin -->
+        <div class="col-md-6 text-end">
+          <button class="custom-button primary"><i class="bi bi-pencil"></i></button>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <!-- card data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos de la Cartilla</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Serie Matrícula">{{ getDetails().registrationSeries }}</app-label-details>
+            <app-label-details label="Número de Matrícula">Número de Matrícula</app-label-details>
+            <app-label-details label="Clase">Clase</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- personal data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos Básicos</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Apellido Paterno">Apellido Paterno</app-label-details>
+            <app-label-details label="Apellido Materno">Apellido Materno</app-label-details>
+            <app-label-details label="Nombre(s)">Nombre(s)</app-label-details>
+            <app-label-details label="CURP">CURP</app-label-details>
+            <app-label-details label="Fecha de Nacimiento">Fecha de Nacimiento</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- address data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Domicilio</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Estado">Estado</app-label-details>
+            <app-label-details label="Municipio">Municipio</app-label-details>
+            <app-label-details label="Calle">Calle</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- aditional data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos Adicionales</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Estado Civil">Estado Civil</app-label-details>
+            <app-label-details label="Teléfono">Teléfono</app-label-details>
+            <app-label-details label="¿Sabes leer y escribir?">¿Sabes leer y escribir?</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- father data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos del Padre</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Nombre(s)">Nombre(s)</app-label-details>
+            <app-label-details label="Apellido Paterno">Apellido Paterno</app-label-details>
+            <app-label-details label="Apellido Materno">Apellido Materno</app-label-details>
+            <app-label-details label="¿Vive?">¿Vive?</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- mother data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos de la Madre</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Nombre(s)">Nombre(s)</app-label-details>
+            <app-label-details label="Apellido Paterno">Apellido Paterno</app-label-details>
+            <app-label-details label="Apellido Materno">Apellido Materno</app-label-details>
+            <app-label-details label="¿Vive?">¿Vive?</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- grandparent data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos de Abuelos</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="Abuelos que aún viven">Abuelos que aún viven</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- spouse data -->
+        <div class="mb-5 row">
+          <div class="col-md-3">
+            <h5 class="mb-3 mx-2 text-bold">Datos del Cónyuge</h5>
+          </div>
+          <div class="col-md-9">
+            <app-label-details label="¿Vive?">¿Vive?</app-label-details>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+      </div>
+    </div>
+  </section>
+</body>

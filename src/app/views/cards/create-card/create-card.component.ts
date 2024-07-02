@@ -15,16 +15,17 @@ import { Router } from '@angular/router';
   templateUrl: './create-card.component.html',
 })
 export class CreateCardComponent implements OnInit {
-  protected cardForm: FormGroup = cardForm;
+  protected cardForm: FormGroup;
   protected maritalStatusOptions: string[];
   protected countryCode: string[];
   protected states: string[];
   protected municipalities: string[];
 
   constructor(private readonly router: Router) {
-    this.maritalStatusOptions = ['Soltero', 'Casado', 'Divorciado', 'Viudo', 'Unión libre'];
-    this.countryCode = ['+502', '+1', '+34'];
-    this.states = Object.keys(States);
+    this.cardForm = cardForm;
+    this.maritalStatusOptions = this.getMaritalStatusOptions();
+    this.countryCode = this.getCountryCodes();
+    this.states = this.getStates();
     this.municipalities = [];
   }
 
@@ -35,8 +36,11 @@ export class CreateCardComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.cardForm.valid) console.log(this.cardForm.value);
-    console.log('Formulario inválido');
+    if (this.cardForm.valid) {
+      console.log(this.cardForm.value);
+    } else {
+      console.log('Formulario inválido');
+    }
   }
 
   onCancel(): void {
@@ -72,7 +76,19 @@ export class CreateCardComponent implements OnInit {
     this.router.navigate(['/cards']).then();
   }
 
-  getMunicipalities(state: string): string[] {
+  private getMaritalStatusOptions(): string[] {
+    return ['Soltero', 'Casado', 'Divorciado', 'Viudo', 'Unión libre'];
+  }
+
+  private getCountryCodes(): string[] {
+    return ['+502', '+1', '+34'];
+  }
+
+  private getStates(): string[] {
+    return Object.keys(States);
+  }
+
+  private getMunicipalities(state: string): string[] {
     return (States as any)[state];
   }
 }

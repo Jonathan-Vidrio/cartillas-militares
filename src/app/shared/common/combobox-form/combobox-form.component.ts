@@ -25,7 +25,7 @@ export class ComboboxFormComponent implements ControlValueAccessor, OnInit {
   protected value: string;
   private touched: boolean;
 
-  private onChange!: (value: any) => void;
+  private onChange!: (value: unknown) => void;
   private onTouched!: () => void;
 
   constructor() {

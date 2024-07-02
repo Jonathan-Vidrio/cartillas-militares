@@ -9,12 +9,12 @@
       <!-- search bar -->
       <div class="d-flex justify-content-center mt-4" style="max-width: 50%; margin: 0 auto">
         <div class="d-flex flex-row justify-content-around w-100">
-          <select class="form-select w-auto" [(ngModel)]="selectedFilter">
+          <select class="form-select w-auto" style="height: 45px;" [(ngModel)]="selectedFilter">
             <option value="matricula">Matrícula</option>
             <option value="nombre">Nombre</option>
             <option value="domicilio">Domicilio</option>
           </select>
-          <input class="form-control mx-2" placeholder="Buscar..." [(ngModel)]="searchValue" (keyup)="searchCard()" />
+          <input class="form-control mx-2" style="height: 45px;" placeholder="Buscar..." [(ngModel)]="searchValue" (keyup)="searchCard()" />
           <button type="button" class="custom-button primary" (click)="searchCard()">
             <i class="bi bi-search"></i>
           </button>
@@ -52,7 +52,7 @@
 
       <!-- pagination -->
       <div class="d-flex justify-content-center">
-        <pagination-controls id="pagination" (pageChange)="currentPage = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        <pagination-controls id="pagination" class="red-pagination" (pageChange)="currentPage = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
       </div>
     </div>
   </section>

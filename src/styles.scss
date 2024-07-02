@@ -7,16 +7,21 @@ td {
   height: 50px;
 }
 
+hr {
+  width: 75%;
+  margin: 0 auto;
+}
+
 .text-bold {
   font-weight: bold;
 }
 
 .text-red {
-  color: #BA0000;
+  color: #ba0000;
 }
 
 .custom-label {
-  color: #717171FF;
+  color: #717171ff;
   margin-left: 0.5vh;
 }
 
@@ -34,11 +39,15 @@ td {
 }
 
 .primary {
-  background-color: #BA0000;
+  background-color: #ba0000;
   color: #ffffff;
 }
 
 .secondary {
-  background-color: #717171FF;
+  background-color: #717171ff;
   color: #ffffff;
+}
+
+.red-pagination .ngx-pagination .current {
+  background: #ba0000;
 }
