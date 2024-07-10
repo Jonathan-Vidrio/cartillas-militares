@@ -3,7 +3,7 @@ import { Card } from '../../core/models/card.interface';
 
 export const cardForm: FormGroup = new FormGroup({
   // card data
-  registrationSeries: new FormControl('asdasdas', [Validators.required]),
+  registrationSeries: new FormControl('', [Validators.required]),
   registrationNumber: new FormControl(0, [Validators.required]),
   class: new FormControl(0, [Validators.required]),
 

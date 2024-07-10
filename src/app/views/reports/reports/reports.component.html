@@ -22,7 +22,7 @@
                 <label class="ms-3">{{ report }}</label>
               </td>
               <td>
-                <button class="custom-button primary">
+                <button class="custom-button primary" type="button" (click)="setSelectedReport(report)">
                   <i class="bi bi-download"></i>
                 </button>
               </td>
@@ -32,4 +32,10 @@
       </div>
     </div>
   </section>
+
+  <!-- Include the modal component -->
+  <app-modal (onSubmit)="handleSubmit()">
+    <app-input-form type="date" label="Fecha Inicial" id="startDate" name="startDate" [(ngModel)]="startDate"></app-input-form>
+    <app-input-form type="date" label="Fecha Final" id="endDate" name="endDate" [(ngModel)]="endDate"></app-input-form>
+  </app-modal>
 </body>

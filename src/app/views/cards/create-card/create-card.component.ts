@@ -7,6 +7,7 @@ import { ComboboxFormComponent } from '../../../shared/common/combobox-form/comb
 import { RadioFormComponent } from '../../../shared/common/radio-form/radio-form.component';
 import States from '../../../../assets/estados-municipios.json';
 import { Router } from '@angular/router';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-create-card',
@@ -20,13 +21,18 @@ export class CreateCardComponent implements OnInit {
   protected countryCode: string[];
   protected states: string[];
   protected municipalities: string[];
+  protected educationLevels: string[];
 
-  constructor(private readonly router: Router) {
+  constructor(
+    private router: Router,
+    private alert: AlertService
+  ) {
     this.cardForm = cardForm;
     this.maritalStatusOptions = this.getMaritalStatusOptions();
     this.countryCode = this.getCountryCodes();
     this.states = this.getStates();
     this.municipalities = [];
+    this.educationLevels = this.getEducationLevels();
   }
 
   ngOnInit(): void {
@@ -36,11 +42,13 @@ export class CreateCardComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.cardForm.valid) {
+    if (this.cardForm.invalid) {
       console.log(this.cardForm.value);
-    } else {
-      console.log('Formulario inválido');
+      this.alert.error('Formulario incompleto');
+      return;
     }
+
+    this.alert.success('Tarjeta creada');
   }
 
   onCancel(): void {
@@ -82,6 +90,10 @@ export class CreateCardComponent implements OnInit {
 
   private getCountryCodes(): string[] {
     return ['+502', '+1', '+34'];
+  }
+
+  private getEducationLevels(): string[] {
+    return ['Primaria', 'Secundaria', 'Preparatoria', 'Licenciatura', 'Posgrado'];
   }
 
   private getStates(): string[] {

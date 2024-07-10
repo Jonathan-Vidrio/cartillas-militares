@@ -96,6 +96,15 @@
                 </div>
               </div>
               <div class="col-md-4">
+                <app-combobox-form id="educationLevel" label="Nivel de Estudios" [options]="educationLevels" placeholder="Selecciona una opción" formControlName="educationLevel"></app-combobox-form>
+              </div>
+            </div>
+
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-input-form id="occupation" label="Ocupación" formControlName="occupation"></app-input-form>
+              </div>
+              <div class="col-md-4">
                 <app-radio-form label="¿Sabe leer y escribir?" name="literacy" [options]="[true, false]" formControlName="literacy"></app-radio-form>
               </div>
             </div>

@@ -20,9 +20,9 @@
             <h5 class="mb-3 mx-2 text-bold">Datos de la Cartilla</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Serie Matrícula">{{ getDetails().registrationSeries }}</app-label-details>
-            <app-label-details label="Número de Matrícula">Número de Matrícula</app-label-details>
-            <app-label-details label="Clase">Clase</app-label-details>
+            <app-label-details label="Serie Matrícula">{{ card.registrationSeries }}</app-label-details>
+            <app-label-details label="Número de Matrícula">{{ card.registrationNumber }}</app-label-details>
+            <app-label-details label="Clase">{{ card.class }}</app-label-details>
           </div>
         </div>
 
@@ -35,11 +35,11 @@
             <h5 class="mb-3 mx-2 text-bold">Datos Básicos</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Apellido Paterno">Apellido Paterno</app-label-details>
-            <app-label-details label="Apellido Materno">Apellido Materno</app-label-details>
-            <app-label-details label="Nombre(s)">Nombre(s)</app-label-details>
-            <app-label-details label="CURP">CURP</app-label-details>
-            <app-label-details label="Fecha de Nacimiento">Fecha de Nacimiento</app-label-details>
+            <app-label-details label="Nombre(s)">{{ card.name }}</app-label-details>
+            <app-label-details label="Primer Apellido">{{ card.paternalSurname }}</app-label-details>
+            <app-label-details label="Segundo Apellido">{{ card.maternalSurname }}</app-label-details>
+            <app-label-details label="CURP">{{ card.curp }}</app-label-details>
+            <app-label-details label="Fecha de Nacimiento">{{ formatDate(card.birthdate) }}</app-label-details>
           </div>
         </div>
 
@@ -52,9 +52,9 @@
             <h5 class="mb-3 mx-2 text-bold">Domicilio</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Estado">Estado</app-label-details>
-            <app-label-details label="Municipio">Municipio</app-label-details>
-            <app-label-details label="Calle">Calle</app-label-details>
+            <app-label-details label="Estado">{{ card.state }}</app-label-details>
+            <app-label-details label="Municipio">{{ card.municipality }}</app-label-details>
+            <app-label-details label="Calle">{{ card.address }}</app-label-details>
           </div>
         </div>
 
@@ -67,9 +67,11 @@
             <h5 class="mb-3 mx-2 text-bold">Datos Adicionales</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Estado Civil">Estado Civil</app-label-details>
-            <app-label-details label="Teléfono">Teléfono</app-label-details>
-            <app-label-details label="¿Sabes leer y escribir?">¿Sabes leer y escribir?</app-label-details>
+            <app-label-details label="Estado Civil">{{ card.maritalStatus }}</app-label-details>
+            <app-label-details label="Teléfono">{{ card.phone }}</app-label-details>
+            <app-label-details label="Nivel de Estudios">{{ card.educationLevel }}</app-label-details>
+            <app-label-details label="Ocupación">{{ card.occupation }}</app-label-details>
+            <app-label-details label="¿Sabes leer y escribir?">{{ formatBoolean(card.literacy) }}</app-label-details>
           </div>
         </div>
 
@@ -82,10 +84,10 @@
             <h5 class="mb-3 mx-2 text-bold">Datos del Padre</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Nombre(s)">Nombre(s)</app-label-details>
-            <app-label-details label="Apellido Paterno">Apellido Paterno</app-label-details>
-            <app-label-details label="Apellido Materno">Apellido Materno</app-label-details>
-            <app-label-details label="¿Vive?">¿Vive?</app-label-details>
+            <app-label-details label="Nombre(s)">{{ card.fatherName }}</app-label-details>
+            <app-label-details label="Primer Apellido">{{ card.fatherPaternalSurname }}</app-label-details>
+            <app-label-details label="Segundo Apellido">{{ card.fatherMaternalSurname }}</app-label-details>
+            <app-label-details label="¿Vive?">{{ formatBoolean(card.fatherAlive) }}</app-label-details>
           </div>
         </div>
 
@@ -98,10 +100,10 @@
             <h5 class="mb-3 mx-2 text-bold">Datos de la Madre</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Nombre(s)">Nombre(s)</app-label-details>
-            <app-label-details label="Apellido Paterno">Apellido Paterno</app-label-details>
-            <app-label-details label="Apellido Materno">Apellido Materno</app-label-details>
-            <app-label-details label="¿Vive?">¿Vive?</app-label-details>
+            <app-label-details label="Nombre(s)">{{ card.motherName }}</app-label-details>
+            <app-label-details label="Primer Apellido">{{ card.motherPaternalSurname }}</app-label-details>
+            <app-label-details label="Segundo Apellido">{{ card.motherMaternalSurname }}</app-label-details>
+            <app-label-details label="¿Vive?">{{ formatBoolean(card.motherAlive) }}</app-label-details>
           </div>
         </div>
 
@@ -114,7 +116,7 @@
             <h5 class="mb-3 mx-2 text-bold">Datos de Abuelos</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="Abuelos que aún viven">Abuelos que aún viven</app-label-details>
+            <app-label-details label="Abuelos que aún viven">{{ card.livingGrandParents }}</app-label-details>
           </div>
         </div>
 
@@ -127,7 +129,7 @@
             <h5 class="mb-3 mx-2 text-bold">Datos del Cónyuge</h5>
           </div>
           <div class="col-md-9">
-            <app-label-details label="¿Vive?">¿Vive?</app-label-details>
+            <app-label-details label="¿Vive?">{{ formatBoolean(card.spouseAlive) }}</app-label-details>
           </div>
         </div>
 

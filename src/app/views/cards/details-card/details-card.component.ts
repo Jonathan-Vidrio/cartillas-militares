@@ -15,7 +15,7 @@ export class DetailsCardComponent {
     this.card = this.getDetails();
   }
 
-  getDetails(): Card {
+  private getDetails(): Card {
     return {
       // card data
       registrationSeries: 'ABC123',
@@ -59,5 +59,21 @@ export class DetailsCardComponent {
       // children data
       numberChildren: 0,
     };
+  }
+
+  formatDate(dateInput: Date | string): string {
+    const date = new Date(dateInput);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Los meses comienzan desde 0
+    const year = date.getFullYear();
+
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
+
+    return `${formattedDay}/${formattedMonth}/${year}`;
+  }
+
+  formatBoolean(value: boolean): string {
+    return value ? 'Sí' : 'No';
   }
 }

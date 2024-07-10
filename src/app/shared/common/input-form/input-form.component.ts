@@ -21,12 +21,19 @@ export class InputFormComponent implements ControlValueAccessor {
   @Input() label: string;
   @Input() type: string;
   @Input() placeholder: string;
-
-  protected value: string;
   private touched: boolean;
+  @Input() set value(val: any) {
+    this._value = val;
+    this.onChange(val);
+    this.onTouched();
+  }
+  get value(): any {
+    return this._value;
+  }
+  private _value: any = '';
 
-  private onChange!: (value: any) => void;
-  private onTouched!: () => void;
+  private onChange: (value: any) => void = () => {};
+  private onTouched: () => void = () => {};
 
   constructor() {
     this.id = '';
@@ -79,8 +86,13 @@ export class InputFormComponent implements ControlValueAccessor {
     this.onChange(input.value);
   }
 
-  writeValue(value: string): void {
-    this.value = value;
+  writeValue(value: any): void {
+    if (value instanceof Date) {
+      const dateStr = value.toISOString().substring(0, 10);
+      this._value = dateStr;
+    } else if (value !== undefined) {
+      this._value = value;
+    }
   }
 
   registerOnChange(fn: (value: any) => void): void {

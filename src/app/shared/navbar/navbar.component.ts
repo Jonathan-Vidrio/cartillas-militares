@@ -7,6 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
   standalone: true,
   imports: [NgClass],
   templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   isDropdownOpen = false;

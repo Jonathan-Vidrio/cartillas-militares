@@ -1,3 +1,6 @@
+$color-primary: #ba0000;
+$color-secondary: #717171ff;
+
 body {
   padding-top: 30px;
 }
@@ -17,11 +20,11 @@ hr {
 }
 
 .text-red {
-  color: #ba0000;
+  color: $color-primary;
 }
 
 .custom-label {
-  color: #717171ff;
+  color: $color-secondary;
   margin-left: 0.5vh;
 }
 
@@ -38,15 +41,35 @@ hr {
 }
 
 .primary {
-  background-color: #ba0000;
+  background-color: $color-primary;
   color: #ffffff;
+
+  &:hover {
+    background-color: rgba(186, 0, 0, 0.84);
+    color: #ffffff;
+  }
+
+  &:active {
+    background-color: rgba(186, 0, 0, 0.73);
+    color: #ffffff;
+  }
 }
 
 .secondary {
-  background-color: #717171ff;
+  background-color: $color-secondary;
   color: #ffffff;
+
+  &:hover {
+    background-color: rgba(113, 113, 113, 0.84);
+    color: #ffffff;
+  }
+
+  &:active {
+    background-color: rgba(113, 113, 113, 0.73);
+    color: #ffffff;
+  }
 }
 
 .red-pagination .ngx-pagination .current {
-  background: #ba0000;
+  background: $color-primary;
 }
