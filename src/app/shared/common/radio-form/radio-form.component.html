@@ -2,7 +2,7 @@
   <label class="custom-label mb-3">{{ label }}</label>
   <div class="mx-2">
     <div *ngFor="let option of options; let optionString; of: optionsToString(options)" class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" [id]="option + name" [name]="name" [checked]="option" (change)="onSelect(option)" />
+      <input class="form-check-input" type="radio" [id]="option + name" [name]="name" [checked]="option" (change)="onSelect(option)" [disabled]="disabled" />
       <label class="form-check-label" [for]="option + name">{{ optionString }}</label>
     </div>
     <div *ngIf="showError()" class="text-danger custom-label mt-1">

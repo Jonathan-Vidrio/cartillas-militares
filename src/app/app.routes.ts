@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cards',
+    redirectTo: 'cartillas',
     pathMatch: 'full',
   },
   {
@@ -11,11 +11,11 @@ export const routes: Routes = [
     loadChildren: () => import('./views/auth/auth.routes').then(m => m.AUTH_ROUTES),
   },
   {
-    path: 'cards',
+    path: 'cartillas',
     loadChildren: () => import('./views/cards/cards.routes').then(m => m.CARDS_ROUTES),
   },
   {
-    path: 'reports',
+    path: 'reportes',
     loadChildren: () => import('./views/reports/reports.routes').then(m => m.REPORTS_ROUTES),
   },
 ];

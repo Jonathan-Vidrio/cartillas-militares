@@ -1,79 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LabelDetailsComponent } from '../../../shared/common/label-details/label-details.component';
 import { Card } from '../../../core/models/card.interface';
+import { CardsService } from '../../../../services/cards.service';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { Response } from '../../../core/models/response.interface';
+import { formatBoolean } from '../../../../helpers/format-boolean';
+import { formatDate } from '../../../../helpers/format-date-time';
 
 @Component({
   selector: 'app-details-card',
   standalone: true,
-  imports: [LabelDetailsComponent],
+  imports: [LabelDetailsComponent, RouterLink],
   templateUrl: './details-card.component.html',
 })
-export class DetailsCardComponent {
-  protected card: Card;
+export class DetailsCardComponent implements OnInit, OnDestroy {
+  private unsubscribe$: Subject<void>;
+  protected card: Card | undefined;
 
-  constructor() {
-    this.card = this.getDetails();
+  constructor(
+    private service: CardsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.unsubscribe$ = new Subject<void>();
   }
 
-  private getDetails(): Card {
-    return {
-      // card data
-      registrationSeries: 'ABC123',
-      registrationNumber: 123456,
-      class: 2024,
-
-      // personal data
-      paternalSurname: 'González',
-      maternalSurname: 'López',
-      name: 'Juan Carlos',
-      curp: 'GOLJ840123HDFRNN01',
-      birthdate: new Date('1984-01-23'),
-      nationality: 'Mexicana',
-      state: 'Ciudad de México',
-      municipality: 'Benito Juárez',
-      maritalStatus: 'Soltero',
-      occupation: 'Ingeniero',
-      literacy: true,
-      educationLevel: 'Licenciatura',
-      address: 'Calle Falsa 123, Colonia Centro',
-      phone: '5551234567',
-
-      // father data
-      fatherName: 'José',
-      fatherPaternalSurname: 'González',
-      fatherMaternalSurname: 'Pérez',
-      fatherAlive: false,
-
-      // mother data
-      motherName: 'María',
-      motherPaternalSurname: 'López',
-      motherMaternalSurname: 'Ramírez',
-      motherAlive: true,
-
-      // grandparents data
-      livingGrandParents: 1,
-
-      // spouse data
-      spouseAlive: false,
-
-      // children data
-      numberChildren: 0,
-    };
+  ngOnInit(): void {
+    this.loadCard();
   }
 
-  formatDate(dateInput: Date | string): string {
-    const date = new Date(dateInput);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Los meses comienzan desde 0
-    const year = date.getFullYear();
-
-    const formattedDay = day < 10 ? `0${day}` : day;
-    const formattedMonth = month < 10 ? `0${month}` : month;
-
-    return `${formattedDay}/${formattedMonth}/${year}`;
+  private getCardId(): string | null {
+    return this.route.snapshot.paramMap.get('id');
   }
 
-  formatBoolean(value: boolean): string {
-    return value ? 'Sí' : 'No';
+  private loadCard(): void {
+    this.service
+      .getCard(Number(this.getCardId() || '0'))
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (response: Response): void => {
+          this.card = response.body[0];
+        },
+        error: (error: any) => console.error(error),
+      });
   }
+
+  protected onClickEdit(): void {
+    this.router.navigate(['/cartillas/modificar', this.getCardId()]).then(() => {});
+  }
+
+  protected onClickDelete(): void {
+    this.service
+      .deleteCard(Number(this.getCardId() || '0'))
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/cartillas']).then(() => {});
+        },
+        error: (error: any) => console.error(error),
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  protected readonly formatBoolean = formatBoolean;
+  protected readonly formatDate = formatDate;
 }

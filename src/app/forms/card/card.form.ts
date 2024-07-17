@@ -4,8 +4,8 @@ import { Card } from '../../core/models/card.interface';
 export const cardForm: FormGroup = new FormGroup({
   // card data
   registrationSeries: new FormControl('', [Validators.required]),
-  registrationNumber: new FormControl(0, [Validators.required]),
-  class: new FormControl(0, [Validators.required]),
+  registrationNumber: new FormControl(0, [Validators.required, Validators.min(1)]),
+  class: new FormControl(0, [Validators.required, Validators.min(1)]),
 
   // personal data
   paternalSurname: new FormControl('', [Validators.required]),
@@ -13,8 +13,8 @@ export const cardForm: FormGroup = new FormGroup({
   name: new FormControl('', [Validators.required]),
   curp: new FormControl('', [Validators.required]),
   birthdate: new FormControl('', [Validators.required]),
-  state: new FormControl('', [Validators.required]),
-  municipality: new FormControl('', [Validators.required]),
+  state: new FormControl('Jalisco', [Validators.required]),
+  municipality: new FormControl('Autlán de Navarro', [Validators.required]),
   maritalStatus: new FormControl('', [Validators.required]),
   occupation: new FormControl('', [Validators.required]),
   literacy: new FormControl(false, [Validators.required]),
@@ -41,7 +41,7 @@ export const cardForm: FormGroup = new FormGroup({
   spouseAlive: new FormControl(false, [Validators.required]),
 
   // children data
-  numberChildren: new FormControl(0, [Validators.required]),
+  numberChildren: new FormControl(0, [Validators.required, Validators.min(0)]),
 } as {
   [K in keyof Card]: FormControl;
 });

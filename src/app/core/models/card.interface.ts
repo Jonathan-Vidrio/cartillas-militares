@@ -1,4 +1,6 @@
 export interface Card {
+  id?: number;
+
   // card data
   registrationSeries: string;
   registrationNumber: number;
@@ -10,7 +12,6 @@ export interface Card {
   name: string;
   curp: string;
   birthdate: Date;
-  nationality: string;
   state: string;
   municipality: string;
   maritalStatus: string;

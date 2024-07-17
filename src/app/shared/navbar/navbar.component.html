@@ -5,12 +5,12 @@
         <li class="nav-item dropdown" [ngClass]="{ show: isDropdownOpen }">
           <a class="nav-link dropdown-toggle" (click)="toggleDropdown()" role="button" aria-haspopup="true" [attr.aria-expanded]="isDropdownOpen"> Cartillas </a>
           <div class="dropdown-menu" [ngClass]="{ show: isDropdownOpen }">
-            <a class="dropdown-item" (click)="navigateTo('/cards')">Todas las Cartillas</a>
-            <a class="dropdown-item" (click)="navigateTo('/cards/create')">Elaborar Cartilla</a>
+            <a class="dropdown-item" (click)="navigateTo('/cartillas')">Todas las Cartillas</a>
+            <a class="dropdown-item" (click)="navigateTo('/cartillas/agregar')">Elaborar Cartilla</a>
           </div>
         </li>
         <li class="nav-item active mx-2">
-          <a class="nav-link" (click)="navigateTo('/reports')">Reportes</a>
+          <a class="nav-link" (click)="navigateTo('/reportes')">Reportes</a>
         </li>
       </ul>
     </div>

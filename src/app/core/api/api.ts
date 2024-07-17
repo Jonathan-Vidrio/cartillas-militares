@@ -1,2 +1,3 @@
-const path = 'http://path/to/api';
+const path = 'https://api.movil.saion.mx/';
+
 export default path;

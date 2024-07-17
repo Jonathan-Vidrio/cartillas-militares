@@ -11,6 +11,7 @@
     (input)="onInput($event)"
     (focus)="onFocus()"
     (blur)="onBlur()"
+    [disabled]="disabled"
     [required]="showError()" />
   <div *ngIf="showError()" class="text-danger custom-label mt-1">
     {{ determineError() }}

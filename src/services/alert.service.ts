@@ -10,10 +10,23 @@ export class AlertService {
   success(message: string): void {
     Swal.fire({
       icon: 'success',
-      title: 'Success',
+      title: 'Éxito',
       text: message,
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'Aceptar',
     });
+  }
+
+  async confirm(message: string): Promise<boolean> {
+    const result = await Swal.fire({
+      icon: 'question',
+      title: 'Confirmar',
+      text: message,
+      confirmButtonText: 'Aceptar',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+    });
+
+    return result.isConfirmed;
   }
 
   error(message: string): void {
@@ -21,16 +34,16 @@ export class AlertService {
       icon: 'error',
       title: 'Error',
       text: message,
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'Aceptar',
     });
   }
 
   warning(message: string): void {
     Swal.fire({
       icon: 'warning',
-      title: 'Warning',
+      title: 'Alerta',
       text: message,
-      confirmButtonText: 'Ok',
+      confirmButtonText: 'Aceptar',
     });
   }
 

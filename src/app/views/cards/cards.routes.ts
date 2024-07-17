@@ -13,15 +13,15 @@ export const CARDS_ROUTES: Routes = [
         component: AllCardsComponent,
       },
       {
-        path: 'create',
+        path: 'agregar',
         component: CreateCardComponent,
       },
       {
-        path: 'edit/:id',
+        path: 'modificar/:id',
         component: EditCardComponent,
       },
       {
-        path: 'details/:id',
+        path: 'detalles/:id',
         component: DetailsCardComponent,
       },
     ],

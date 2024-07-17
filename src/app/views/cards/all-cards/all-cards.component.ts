@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CardsService } from '../../../../services/cards.service';
+import { Card } from '../../../core/models/card.interface';
+import { Subject, takeUntil } from 'rxjs';
+import { Response } from '../../../core/models/response.interface';
 
 @Component({
   selector: 'app-all-cards',
@@ -10,48 +14,41 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [NgForOf, RouterLink, FormsModule, NgxPaginationModule],
   templateUrl: './all-cards.component.html',
 })
-export class AllCardsComponent {
-  selectedFilter = 'matricula';
-  searchValue = '';
-  currentPage = 1;
-  cards = [
-    {
-      serie: 'Serie 1',
-      matricula: '1234 ABC',
-      apellidoPaterno: 'Perez',
-      apellidoMaterno: 'Gonzalez',
-      nombre: 'Juan',
-      domicilio: 'Calle 123',
-    },
-    {
-      serie: 'Serie 2',
-      matricula: '5678 DEF',
-      apellidoPaterno: 'Gomez',
-      apellidoMaterno: 'Lopez',
-      nombre: 'Maria',
-      domicilio: 'Calle 456',
-    },
-    {
-      serie: 'Serie 3',
-      matricula: '9012 GHI',
-      apellidoPaterno: 'Rodriguez',
-      apellidoMaterno: 'Hernandez',
-      nombre: 'Pedro',
-      domicilio: 'Calle 789',
-    },
-    {
-      serie: 'Serie 4',
-      matricula: '3456 JKL',
-      apellidoPaterno: 'Garcia',
-      apellidoMaterno: 'Martinez',
-      nombre: 'Ana',
-      domicilio: 'Calle 012',
-    },
-  ];
+export class AllCardsComponent implements OnDestroy {
+  private unsubscribe$ = new Subject<void>();
 
-  constructor() {}
+  protected selectedFilter: string;
+  protected searchValue: string;
+  protected currentPage: number;
+  protected cards: Card[];
 
-  searchCard() {
+  constructor(private service: CardsService) {
+    this.selectedFilter = 'matricula';
+    this.searchValue = '';
+    this.currentPage = 1;
+    this.cards = [];
+
+    this.loadCards();
+  }
+
+  protected searchCard() {
     console.log('searchCard');
+  }
+
+  private loadCards(): void {
+    this.service
+      .getCards()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (response: Response): void => {
+          this.cards = response.body;
+        },
+        error: (error: any) => console.error(error),
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

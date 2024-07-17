@@ -9,12 +9,12 @@
       <!-- search bar -->
       <div class="d-flex justify-content-center mt-4" style="max-width: 50%; margin: 0 auto">
         <div class="d-flex flex-row justify-content-around w-100">
-          <select class="form-select w-auto" style="height: 45px;" [(ngModel)]="selectedFilter">
+          <select class="form-select w-auto" style="height: 45px" [(ngModel)]="selectedFilter">
             <option value="matricula">Matrícula</option>
             <option value="nombre">Nombre</option>
             <option value="domicilio">Domicilio</option>
           </select>
-          <input class="form-control mx-2" style="height: 45px;" placeholder="Buscar..." [(ngModel)]="searchValue" (keyup)="searchCard()" />
+          <input class="form-control mx-2" style="height: 45px" placeholder="Buscar..." [(ngModel)]="searchValue" (keyup)="searchCard()" />
           <button type="button" class="custom-button primary" (click)="searchCard()">
             <i class="bi bi-search"></i>
           </button>
@@ -37,14 +37,14 @@
           <tbody>
             <tr *ngFor="let card of cards | paginate: { itemsPerPage: 15, currentPage, id: 'pagination' }">
               <!-- link to card -->
-              <td>{{ card.serie }}</td>
+              <td>{{ card?.registrationSeries }}</td>
               <td>
-                <a class="text-red" [routerLink]="['/cards/details', card.matricula]">{{ card.matricula }}</a>
+                <a class="text-red" [routerLink]="['/cartillas/detalles', card.id]">{{ card.registrationNumber }}</a>
               </td>
-              <td>{{ card.apellidoPaterno }}</td>
-              <td>{{ card.apellidoMaterno }}</td>
-              <td>{{ card.nombre }}</td>
-              <td>{{ card.domicilio }}</td>
+              <td>{{ card?.paternalSurname }}</td>
+              <td>{{ card?.maternalSurname }}</td>
+              <td>{{ card?.name }}</td>
+              <td>{{ card?.address }}</td>
             </tr>
           </tbody>
         </table>

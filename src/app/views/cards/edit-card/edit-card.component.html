@@ -1,1 +1,222 @@
-<p>edit-card works!</p>
+<body>
+  <section class="container">
+    <div class="mt-4">
+      <!-- header -->
+      <div>
+        <h3>Editar Cartilla Militar</h3>
+      </div>
+
+      <!-- form -->
+      <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+        <div class="mt-5">
+          <!-- card data -->
+          <div class="mb-4">
+            <h5 class="mb-3 mx-2 text-bold">Datos de la Cartilla</h5>
+
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-input-form id="registrationSeries" label="Serie Matrícula" formControlName="registrationSeries"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="registrationNumber" type="number" label="Número de Matrícula" formControlName="registrationNumber"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="class" type="number" label="Clase" formControlName="class"></app-input-form>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mx-auto m-5" />
+
+          <!-- personal data -->
+          <div class="mb-4">
+            <h5 class="mb-3 mx-2 text-bold">Datos Básicos</h5>
+
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-input-form id="paternalSurname" label="Apellido Paterno" formControlName="paternalSurname"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="maternalSurname" label="Apellido Materno" formControlName="maternalSurname"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="name" label="Nombre(s)" formControlName="name"></app-input-form>
+              </div>
+            </div>
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-input-form id="curp" label="CURP" formControlName="curp"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="birthdate" type="date" label="Fecha de Nacimiento" formControlName="birthdate"></app-input-form>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mx-auto m-5" />
+
+          <!-- address data -->
+          <div class="mb-4">
+            <h5 class="mb-3 mx-2 text-bold">Domicilio</h5>
+
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-combobox-form id="state" label="Estado" [options]="states" placeholder="Selecciona una opción" formControlName="state"></app-combobox-form>
+              </div>
+              <div class="col-md-4">
+                <app-combobox-form id="municipality" label="Municipio" [options]="municipalities" placeholder="Selecciona una opción" formControlName="municipality"></app-combobox-form>
+              </div>
+              <div class="col-md-4">
+                <app-input-form id="address" label="Calle" formControlName="address"></app-input-form>
+              </div>
+            </div>
+          </div>
+
+          <!-- separator -->
+          <hr class="mx-auto m-5" />
+
+          <!-- additional data -->
+          <div class="mb-4">
+            <h5 class="mb-3 mx-2 text-bold">Datos Adicionales</h5>
+
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-combobox-form id="maritalStatus" label="Estado Civil" [options]="maritalStatusOptions" placeholder="Selecciona una opción" formControlName="maritalStatus"></app-combobox-form>
+              </div>
+              <div class="col-md-4">
+                <div class="row">
+                  <div class="col" style="min-width: 110px; max-width: 110px">
+                    <app-combobox-form id="lada" label="Teléfono" [options]="internationalLadas"></app-combobox-form>
+                  </div>
+                  <div class="col">
+                    <app-input-form id="phone" label="" formControlName="phone"></app-input-form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <app-combobox-form id="educationLevel" label="Nivel de Estudios" [options]="educationLevels" placeholder="Selecciona una opción" formControlName="educationLevel"></app-combobox-form>
+              </div>
+            </div>
+
+            <div class="m-1 row">
+              <div class="col-md-4">
+                <app-input-form id="occupation" label="Ocupación" formControlName="occupation"></app-input-form>
+              </div>
+              <div class="col-md-4">
+                <app-radio-form label="¿Sabe leer y escribir?" name="literacy" [options]="[true, false]" formControlName="literacy"></app-radio-form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- father data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2 text-bold">Datos del Padre</h5>
+
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-input-form id="fatherPaternalSurname" label="Apellido Paterno" formControlName="fatherPaternalSurname"></app-input-form>
+            </div>
+            <div class="col-md-4">
+              <app-input-form id="fatherMaternalSurname" label="Apellido Materno" formControlName="fatherMaternalSurname"></app-input-form>
+            </div>
+            <div class="col-md-4">
+              <app-input-form id="fatherName" label="Nombre(s)" formControlName="fatherName"></app-input-form>
+            </div>
+          </div>
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-radio-form label="¿Vive?" name="fatherAlive" [options]="[true, false]" formControlName="fatherAlive"></app-radio-form>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- mother data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2 text-bold">Datos de la Madre</h5>
+
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-input-form id="motherName" label="Nombre" formControlName="motherName"></app-input-form>
+            </div>
+            <div class="col-md-4">
+              <app-input-form id="motherPaternalSurname" label="Apellido Paterno" formControlName="motherPaternalSurname"></app-input-form>
+            </div>
+            <div class="col-md-4">
+              <app-input-form id="motherMaternalSurname" label="Apellido Materno" formControlName="motherMaternalSurname"></app-input-form>
+            </div>
+          </div>
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-radio-form label="¿Vive?" name="motherAlive" [options]="[true, false]" formControlName="motherAlive"></app-radio-form>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- grandparents data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2 text-bold">Datos de Abuelos</h5>
+
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-input-form id="livingGrandParents" type="number" label="Abuelos que aún viven" formControlName="livingGrandParents"></app-input-form>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- spouse data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2 text-bold">Datos del Cónyuge</h5>
+
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-radio-form label="¿Vive?" name="spouseAlive" [options]="[true, false]" formControlName="spouseAlive"></app-radio-form>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- children data -->
+        <div class="mb-4">
+          <h5 class="mb-3 mx-2 text-bold">Datos de Hijos</h5>
+
+          <div class="m-1 row">
+            <div class="col-md-4">
+              <app-input-form type="number" id="numberChildren" label="Número de Hijos" formControlName="numberChildren"></app-input-form>
+            </div>
+          </div>
+        </div>
+
+        <!-- separator -->
+        <hr class="mx-auto m-5" />
+
+        <!-- submit button -->
+        <div class="row mb-5">
+          <div class="col-md-4"></div>
+          <div class="col-md-2 d-flex">
+            <button class="custom-button secondary w-100" type="button" (click)="onCancel()">Cancelar</button>
+          </div>
+          <div class="col-md-2 d-flex">
+            <button class="custom-button primary w-100" type="submit"><i class="bi bi-save-fill"></i> Guardar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>

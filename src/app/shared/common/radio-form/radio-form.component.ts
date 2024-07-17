@@ -19,6 +19,7 @@ export class RadioFormComponent implements ControlValueAccessor, OnInit {
   @Input() label: string;
   @Input() name: string;
   @Input() options: any[];
+  @Input() disabled: boolean;
 
   protected value: boolean;
   protected optionsMap: { [key: string]: any };
@@ -31,6 +32,7 @@ export class RadioFormComponent implements ControlValueAccessor, OnInit {
     this.label = '';
     this.name = '';
     this.options = [];
+    this.disabled = false;
     this.value = this.options[0];
     this.optionsMap = {};
     this.touched = false;
@@ -44,7 +46,7 @@ export class RadioFormComponent implements ControlValueAccessor, OnInit {
     }, {});
   }
 
-  determineError(): string {
+  protected determineError(): string {
     if (this.touched) {
       return 'Este campo es obligatorio';
     }
@@ -52,23 +54,23 @@ export class RadioFormComponent implements ControlValueAccessor, OnInit {
     return '';
   }
 
-  showError(): boolean {
+  protected showError(): boolean {
     return !this.touched;
   }
 
-  optionToString(option: any): string {
+  protected optionToString(option: any): string {
     if (typeof option === 'boolean') return option ? 'Sí' : 'No';
     return option;
   }
 
-  optionsToString(options: any[]): any[] {
+  protected optionsToString(options: any[]): any[] {
     return options.map(option => this.optionToString(option));
   }
 
-  onSelect(value: any): void {
+  protected onSelect(value: any): void {
     const originalValue = this.optionsMap[value];
     this.writeValue(originalValue);
-    this.onChange(originalValue); // Notificar el cambio al formulario
+    this.onChange(originalValue);
   }
 
   writeValue(value: boolean): void {

@@ -21,6 +21,7 @@ export class InputFormComponent implements ControlValueAccessor {
   @Input() label: string;
   @Input() type: string;
   @Input() placeholder: string;
+  @Input() disabled: boolean;
   private touched: boolean;
   @Input() set value(val: any) {
     this._value = val;
@@ -40,6 +41,7 @@ export class InputFormComponent implements ControlValueAccessor {
     this.type = '';
     this.label = '';
     this.placeholder = '';
+    this.disabled = false;
     this.value = this.type === 'number' ? '0' : '';
     this.touched = false;
   }
